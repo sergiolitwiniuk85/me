@@ -1,2 +1,370 @@
-# me
-webpage
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sergio Litwiniuk - Bioinformatics & Data Science</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin: 0 auto 1.5rem;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--primary);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: opacity 0.3s;
+        }
+        
+        .contact-links a:hover {
+            opacity: 0.8;
+        }
+        
+        section {
+            padding: 3rem 0;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .summary {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            padding: 2rem;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-category {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .skill-category h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .skill-category ul {
+            list-style-type: none;
+        }
+        
+        .skill-category li {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+        
+        .skill-category li:before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+        }
+        
+        .experience-item, .education-item {
+            background-color: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .experience-header, .education-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .experience-title, .education-title {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .experience-date, .education-date {
+            color: var(--gray);
+            font-style: italic;
+        }
+        
+        .experience-location, .education-location {
+            color: var(--gray);
+        }
+        
+        .publication-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .publication-item:last-child {
+            border-bottom: none;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-header, .education-header {
+                flex-direction: column;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="profile-img">SL</div>
+            <h1>Sergio Leandro Litwiniuk</h1>
+            <div class="title">Bioinformatics & Data Science</div>
+            <div class="contact-links">
+                <a href="mailto:sergiolitwiniuk@gmail.com">
+                    <span>sergiolitwiniuk@gmail.com</span>
+                </a>
+                <a href="https://linkedin.com/in/sergio-litwiniuk" target="_blank">
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/sergiolitwiniuk85" target="_blank">
+                    <span>GitHub</span>
+                </a>
+                <a href="https://huggingface.co/sergiolitwiniuk" target="_blank">
+                    <span>Hugging Face</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="summary">
+        <div class="container">
+            <h2>Professional Summary</h2>
+            <div class="summary">
+                <p>Geneticist and bioinformatics analyst with over 10 years of research experience at CONICET (National Council of Research), specializing in end-to-end next-generation sequencing (NGS) data analysis across genomics, transcriptomics, and metagenomics for both short and long-read technologies. Passionate about applying computational approaches to translational research in immunology and cancer, bridging the gap between basic discoveries and clinical applications.</p>
+                <p>Proficient in Python and Linux-based systems, I develop robust, reproducible pipelines using Snakemake and Nextflow, with expertise in version control (Git), containerization (Docker/Conda), and high-performance computing (HPC) environments with Slurm workload management.</p>
+                <p>Currently expanding my data science and artificial intelligence/machine learning (AI/ML) capabilities through a Master's program at Universidad Complutense de Madrid, with hands-on experience in machine learning, deep learning, natural language processing (NLP), and frameworks including scikit-learn, TensorFlow, and Hugging Face.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Machine Learning & AI</h3>
+                    <ul>
+                        <li>Supervised/Unsupervised Learning</li>
+                        <li>Deep Learning (TensorFlow, PyTorch)</li>
+                        <li>Generative AI, LLMs, NLP</li>
+                        <li>Time Series Forecasting</li>
+                        <li>Statistics, Optimization</li>
+                        <li>CI/CD, Model Deployment</li>
+                        <li>Linux OS, Containerization (Docker, Conda)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Programming & Big Data</h3>
+                    <ul>
+                        <li>Python (Pandas, NumPy, Scikit-learn, Matplotlib)</li>
+                        <li>R, C++, SQL, NoSQL (MongoDB)</li>
+                        <li>Cloud Platforms (AWS, Azure, Databricks, Spark)</li>
+                        <li>Workflow Systems (Snakemake, Nextflow)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Bioinformatics & Genomics</h3>
+                    <ul>
+                        <li>NGS Pipelines (Transcriptomics, scRNA-seq)</li>
+                        <li>Genomics, Variant Calling, Metagenomics</li>
+                        <li>FastQC, SPAdes, Quast, BUSCO, Trinity</li>
+                        <li>Bowtie, SAMtools, Picard, DESeq2, Scanpy</li>
+                        <li>STAR, Salmon, Plink, hail, GATK, seqkit</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Bioinformatics Analyst (CPA)</div>
+                    <div class="experience-date">Oct 2019 – Present</div>
+                </div>
+                <div class="experience-location">National Research Council (CONICET) – Institute of Subtropical Biology, Posadas, Argentina</div>
+                <ul>
+                    <li>Developed end-to-end solutions for omics data analysis and processing</li>
+                    <li>Experience with genomic, transcriptomic, and metagenomic assemblies and annotations</li>
+                    <li>Analyzed sequencing data from multiple technologies (DArT, Illumina, ONT MinION)</li>
+                    <li>Implemented ML methods for differential gene expression and sex-related gene prediction</li>
+                    <li>Performed SNP calling, LD and haplotype analysis with PLINK and Hail</li>
+                    <li>Collaborated on projects such as PoblAr Biobank and Project JAGUAR</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Visiting Scientist</div>
+                    <div class="experience-date">Dec 2023 – May 2024</div>
+                </div>
+                <div class="experience-location">European Genome Archive (EGA) – PRBB, Barcelona, Spain</div>
+                <ul>
+                    <li>Collaborated with the BioTeam on genomic data quality control and contamination assessment</li>
+                    <li>Developed variant calling pipelines following GATK quality standards</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Visiting Scientist</div>
+                    <div class="experience-date">May 2024</div>
+                </div>
+                <div class="experience-location">National Institute of Agricultural Botany (NIAB), Cambridge, United Kingdom</div>
+                <ul>
+                    <li>Focused meetings on transcriptome analysis and sex determination in Ilex paraguariensis</li>
+                    <li>Configured user environment in the UK CropDiversity HPC cluster</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education-item">
+                <div class="education-header">
+                    <div class="education-title">Master's in Data Science, Big Data and Artificial Intelligence</div>
+                    <div class="education-date">Oct 2024 – Sep 2025</div>
+                </div>
+                <div class="education-location">Complutense University of Madrid (UCM), Madrid, Spain</div>
+                <p>Thesis: "Epitope Prediction via Fine-Tuning of Protein Language Models"</p>
+                <p>Award: 3rd Prize in Scholarship Contest, selected as one of the best Master's theses</p>
+            </div>
+            
+            <div class="education-item">
+                <div class="education-header">
+                    <div class="education-title">Licenciatura in Genetics (Master's equivalent)</div>
+                    <div class="education-date">2005 – 2015</div>
+                </div>
+                <div class="education-location">National University of Misiones (UNAM), Posadas, Argentina</div>
+                <p>Thesis: "Linkage disequilibrium and haplotype analysis using 50k–700k SNPs in cattle populations"</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications">
+        <div class="container">
+            <h2>Publications</h2>
+            <div class="publication-item">
+                <p><strong>Litwiniuk, S.</strong> (2025, In progress). <em>Optimization of Immunogenic Epitope Prediction Using Transfer Learning and Parameter Efficient Fine-Tuning (PEFT)</em>.</p>
+            </div>
+            <div class="publication-item">
+                <p><strong>Farfas, L., Litwiniuk, S., & Rojas, C.</strong> (2022). <em>In silico Analysis of the Entire P. glaucum Genome Identifies Regulatory Genes of the bZIP Family Modulated in Response to Water Stress</em>. American Journal of Plant Sciences, 13, 277–293.</p>
+            </div>
+            <div class="publication-item">
+                <p><strong>Talbot, B., Sander, B., Cevallos, V. et al.</strong> (2021). <em>Determinants of Aedes mosquito density as an indicator of arbovirus transmission risk</em>. Parasites & Vectors, 14, 482.</p>
+            </div>
+            <div class="publication-item">
+                <p><strong>Fay, J.V., Watkins, C.J., Shrestha, R.K. et al.</strong> (2018). <em>Yerba mate (flex paraguariensis) de novo transcriptome assembly based on tissue-specific expression</em>. BMC Genomics, 19, 891.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Sergio Litwiniuk</p>
+        </div>
+    </footer>
+</body>
+</html>
