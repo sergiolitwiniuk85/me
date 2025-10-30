@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sergio Litwiniuk - Bioinformatics & Data Science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --sidebar-width: 250px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+        }
+        
+        /* Sidebar Navigation */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: linear-gradient(to bottom, var(--primary), #1a2530);
+            color: white;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+            box-shadow: 3px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin: 0 auto 1.5rem;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
+        }
+        
+        .sidebar h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        .sidebar .title {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--light);
+        }
+        
+        .nav-links {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .nav-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateX(5px);
+        }
+        
+        .nav-links i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        .contact-links {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: opacity 0.3s;
+        }
+        
+        .contact-links a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 2rem 3rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            display: none;
+        }
+        
+        section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .summary {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            padding: 2rem;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-category {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .skill-category h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .skill-category ul {
+            list-style-type: none;
+        }
+        
+        .skill-category li {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+        
+        .skill-category li:before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+        }
+        
+        .experience-item, .education-item, .tutorial-item {
+            background-color: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .experience-header, .education-header, .tutorial-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .experience-title, .education-title, .tutorial-title {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .experience-date, .education-date, .tutorial-date {
+            color: var(--gray);
+            font-style: italic;
+        }
+        
+        .experience-location, .education-location {
+            color: var(--gray);
+        }
+        
+        .publication-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .publication-item:last-child {
+            border-bottom: none;
+        }
+        
+        .tutorial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .tutorial-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tutorial-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        
+        .tutorial-card-content {
+            padding: 1.5rem;
+        }
+        
+        .tutorial-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .tutorial-card p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .tutorial-card a {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .tutorial-card a:hover {
+            background-color: var(--primary);
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1.5rem;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+            
+            .skills-grid, .tutorial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-header, .education-header {
+                flex-direction: column;
+            }
+            
+            .contact-links {
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="profile-img">SL</div>
+        <h1>Sergio Litwiniuk</h1>
+        <div class="title">Bioinformatics & Data Science</div>
+        
+        <ul class="nav-links">
+            <li><a href="#summary" class="nav-link active" data-target="summary"><i class="fas fa-user"></i> Summary</a></li>
+            <li><a href="#skills" class="nav-link" data-target="skills"><i class="fas fa-code"></i> Skills</a></li>
+            <li><a href="#experience" class="nav-link" data-target="experience"><i class="fas fa-briefcase"></i> Experience</a></li>
+            <li><a href="#education" class="nav-link" data-target="education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+            <li><a href="#publications" class="nav-link" data-target="publications"><i class="fas fa-book"></i> Publications</a></li>
+            <li><a href="#tutorials" class="nav-link" data-target="tutorials"><i class="fas fa-video"></i> Tutorials</a></li>
+        </ul>
+        
+        <div class="contact-links">
+            <a href="mailto:sergiolitwiniuk@gmail.com">
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+            </a>
+            <a href="https://linkedin.com/in/sergio-litwiniuk" target="_blank">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/sergiolitwiniuk85" target="_blank">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="https://huggingface.co/sergiolitwiniuk" target="_blank">
+                <i class="fas fa-robot"></i>
+                <span>Hugging Face</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section id="summary" class="active">
+            <h2>Professional Summary</h2>
+            <div class="summary">
+                <p>Geneticist and bioinformatics analyst with over 10 years of research experience at CONICET (National Council of Research), specializing in end-to-end next-generation sequencing (NGS) data analysis across genomics, transcriptomics, and metagenomics for both short and long-read technologies. Passionate about applying computational approaches to translational research in immunology and cancer, bridging the gap between basic discoveries and clinical applications.</p>
+                <p>Proficient in Python and Linux-based systems, I develop robust, reproducible pipelines using Snakemake and Nextflow, with expertise in version control (Git), containerization (Docker/Conda), and high-performance computing (HPC) environments with Slurm workload management.</p>
+                <p>Currently expanding my data science and artificial intelligence/machine learning (AI/ML) capabilities through a Master's program at Universidad Complutense de Madrid, with hands-on experience in machine learning, deep learning, natural language processing (NLP), and frameworks including scikit-learn, TensorFlow, and Hugging Face.</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Machine Learning & AI</h3>
+                    <ul>
+                        <li>Supervised/Unsupervised Learning</li>
+                        <li>Deep Learning (TensorFlow, PyTorch)</li>
+                        <li>Generative AI, LLMs, NLP</li>
+                        <li>Time Series Forecasting</li>
+                        <li>Statistics, Optimization</li>
+                        <li>CI/CD, Model Deployment</li>
+                        <li>Linux OS, Containerization (Docker, Conda)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Programming & Big Data</h3>
+                    <ul>
+                        <li>Python (Pandas, NumPy, Scikit-learn, Matplotlib)</li>
+                        <li>R, C++, SQL, NoSQL (MongoDB)</li>
+                        <li>Cloud Platforms (AWS, Azure, Databricks, Spark)</li>
+                        <li>Workflow Systems (Snakemake, Nextflow)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Bioinformatics & Genomics</h3>
+                    <ul>
+                        <li>NGS Pipelines (Transcriptomics, scRNA-seq)</li>
+                        <li>Genomics, Variant Calling, Metagenomics</li>
+                        <li>FastQC, SPAdes, Quast, BUSCO, Trinity</li>
+                        <li>Bowtie, SAMtools, Picard, DESeq2, Scanpy</li>
+                        <li>STAR, Salmon, Plink, hail, GATK, seqkit</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Bioinformatics Analyst (CPA)</div>
+                    <div class="experience-date">Oct 2019 – Present</div>
+                </div>
+                <div class="experience-location">National Research Council (CONICET) – Institute of Subtropical Biology, Posadas, Argentina</div>
+                <ul>
+                    <li>Developed end-to-end solutions for omics data analysis and processing</li>
+                    <li>Experience with genomic, transcriptomic, and metagenomic assemblies and annotations</li>
+                    <li>Analyzed sequencing data from multiple technologies (DArT, Illumina, ONT MinION)</li>
+                    <li>Implemented ML methods for differential gene expression and sex-related gene prediction</li>
+                    <li>Performed SNP calling, LD and haplotype analysis with PLINK and Hail</li>
+                    <li>Collaborated on projects such as PoblAr Biobank and Project JAGUAR</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Visiting Scientist</div>
+                    <div class="experience-date">Dec 2023 – May 2024</div>
+                </div>
+                <div class="experience-location">European Genome Archive (EGA) – PRBB, Barcelona, Spain</div>
+                <ul>
+                    <li>Collaborated with the BioTeam on genomic data quality control and contamination assessment</li>
+                    <li>Developed variant calling pipelines following GATK quality standards</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Visiting Scientist</div>
+                    <div class="experience-date">May 2024</div>
+                </div>
+                <div class="experience-location">National Institute of Agricultural Botany (NIAB), Cambridge, United Kingdom</div>
+                <ul>
+                    <li>Focused meetings on transcriptome analysis and sex determination in Ilex paraguariensis</li>
+                    <li>Configured user environment in the UK CropDiversity HPC cluster</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="education-item">
+                <div class="education-header">
+                    <div class="education-title">Master's in Data Science, Big Data and Artificial Intelligence</div>
+                    <div class="education-date">Oct 2024 – Sep 2025</div>
+                </div>
+                <div class="education-location">Complutense University of Madrid (UCM), Madrid, Spain</div>
+                <p>Thesis: "Epitope Prediction via Fine-Tuning of Protein Language Models"</p>
+                <p>Award: 3rd Prize in Scholarship Contest, selected as one of the best Master's theses</p>
+            </div>
+            
+            <div class="education-item">
+                <div class="education-header">
+                    <div class="education-title">Licenciatura in Genetics (Master's equivalent)</div>
+                    <div class="education-date">2005 – 2015</div>
+                </div>
+                <div class="education-location">National University of Misiones (UNAM), Posadas, Argentina</div>
+                <p>Thesis: "Linkage disequilibrium and haplotype analysis using 50k–700k SNPs in cattle populations"</p>
+            </div>
+        </section>
+
+        <section id="publications">
+            <h2>Publications</h2>
+            <div class="publication-item">
+                <p><strong>Litwiniuk, S.</strong> (2025, In progress). <em>Optimization of Immunogenic Epitope Prediction Using Transfer Learning and Parameter Efficient Fine-Tuning (PEFT)</em>.</p>
+            </div>
+            <div class="publication-item">
+                <p><strong>Farfas, L., Litwiniuk, S., & Rojas, C.</strong> (2022). <em>In silico Analysis of the Entire P. glaucum Genome Identifies Regulatory Genes of the bZIP Family Modulated in Response to Water Stress</em>. American Journal of Plant Sciences, 13, 277–293.</p>
+            </div>
+            <div class="publication-item">
+                <p><strong>Talbot, B., Sander, B., Cevallos, V. et al.</strong> (2021). <em>Determinants of Aedes mosquito density as an indicator of arbovirus transmission risk</em>. Parasites & Vectors, 14, 482.</p>
+            </div>
+            <div class="publication-item">
+                <p><strong>Fay, J.V., Watkins, C.J., Shrestha, R.K. et al.</strong> (2018). <em>Yerba mate (flex paraguariensis) de novo transcriptome assembly based on tissue-specific expression</em>. BMC Genomics, 19, 891.</p>
+            </div>
+        </section>
+
+        <section id="tutorials">
+            <h2>Tutorials</h2>
+            <p>Here are some tutorials I've created to share knowledge in bioinformatics and data science:</p>
+            
+            <div class="tutorial-grid">
+                <div class="tutorial-card">
+                    <div class="tutorial-card-content">
+                        <h3>NGS Pipeline with Nextflow</h3>
+                        <p>A comprehensive guide to building reproducible NGS pipelines using Nextflow, covering quality control, alignment, and variant calling.</p>
+                        <a href="#">View Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card">
+                    <div class="tutorial-card-content">
+                        <h3>scRNA-seq Analysis with Scanpy</h3>
+                        <p>Step-by-step tutorial for single-cell RNA sequencing data analysis using Python and Scanpy, from preprocessing to clustering.</p>
+                        <a href="#">View Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card">
+                    <div class="tutorial-card-content">
+                        <h3>Protein Language Models for Epitope Prediction</h3>
+                        <p>Fine-tuning ESM protein language models for immunogenic epitope prediction using transfer learning techniques.</p>
+                        <a href="#">View Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card">
+                    <div class="tutorial-card-content">
+                        <h3>Variant Calling with GATK Best Practices</h3>
+                        <p>Implementing GATK best practices for germline and somatic variant calling in human genomics data.</p>
+                        <a href="#">View Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card">
+                    <div class="tutorial-card-content">
+                        <h3>Metagenomics Analysis Pipeline</h3>
+                        <p>Complete workflow for metagenomic data analysis, from quality control to taxonomic profiling and functional annotation.</p>
+                        <a href="#">View Tutorial</a>
+                    </div>
+                </div>
+                
+                <div class="tutorial-card">
+                    <div class="tutorial-card-content">
+                        <h3>ML for Differential Expression</h3>
+                        <p>Applying machine learning methods to identify differentially expressed genes in transcriptomics data.</p>
+                        <a href="#">View Tutorial</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and sections
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+                    
+                    // Add active class to clicked link and corresponding section
+                    this.classList.add('active');
+                    const targetId = this.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
